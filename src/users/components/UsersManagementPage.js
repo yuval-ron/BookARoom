@@ -23,10 +23,10 @@ class UsersManagementPage extends Component {
 
         <div className="users-list-container">
           {Object.keys(users).map(userId => {
-            const {username, password} = users[userId]
+            const {username, password, color} = users[userId]
             return (
-              <div key={userId} className="user-item">
-                <div className="username">
+              <div key={userId} className="user-item" style={{border: `1px solid ${color}`}}>
+                <div className="username" style={{borderBottom: `1px solid ${color}`}}>
                   <Icon>account_circle</Icon>
                   <span className="label">{username}</span>
                 </div>

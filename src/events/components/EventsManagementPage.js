@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllRooms} from '../../rooms/actions'
+import RoomsList from '../../rooms/components/RoomsList'
 
 class EventsManagementPage extends Component {
   componentDidMount() {
@@ -14,11 +15,7 @@ class EventsManagementPage extends Component {
 
     return (
       <div className="events-management-container">
-        {isLoading && <div>loading...</div>}
-        {Object.keys(rooms).map(roomId => {
-          const room = rooms[roomId]
-          return <div className="room-item" key={roomId}>{room.name}</div>
-        })}
+        <RoomsList isLoading={isLoading} rooms={rooms} />
       </div>
     )
   }
