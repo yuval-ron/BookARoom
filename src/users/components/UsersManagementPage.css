@@ -1,0 +1,39 @@
+.users-management-container .users-list-container {
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-management-container .user-item {
+  width: 220px;
+  margin: 10px;
+  border: 1px solid #3f51b5;
+  color: #3f51b5;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.users-management-container .user-item:hover {
+  transform: scale(1.05);
+}
+
+.users-management-container .user-item .username {
+  border-bottom: 1px solid #3f51b5;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.users-management-container .user-item .password {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.users-management-container .user-item .label {
+  margin-left: 10px;
+}
