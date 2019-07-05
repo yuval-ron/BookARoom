@@ -5,13 +5,18 @@ import { Router, Route, browserHistory } from 'react-router'
 
 import './index.css'
 import App from './App'
+import HomePage from './HomePage'
+import UsersManagementPage from './users/components/UsersManagementPage'
 import * as serviceWorker from './serviceWorker'
 import store from './store.js'
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App} />
+      <Route path="/" component={App}>
+        <Route path="home" component={HomePage} />
+        <Route path='users-management' component={UsersManagementPage} />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('root'))
