@@ -14,7 +14,7 @@ export default class BookARoomAppBar extends Component {
     return (
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" onClick={goToRoot}>
+          <Typography variant="h6" className="app-logo" onClick={goToRoot}>
             Book a Room
           </Typography>
           <div className="user-contorls-container">

@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {createNewUser, getAllUsers} from '../actions'
 import NewUserForm from './NewUserForm'
+import Icon from '@material-ui/core/Icon'
+import './UsersManagementPage.css'
 
 class UsersManagementPage extends Component {
   componentDidMount() {
@@ -18,13 +20,23 @@ class UsersManagementPage extends Component {
         <NewUserForm createNewUser={createNewUser} />
 
         {isLoading && <div>loading...</div>}
-
-        {Object.keys(users).map(userId => {
-          const {username, password} = users[userId]
-          return (
-            <div key={userId}>{username} - {password}</div>
-          )
-        })}
+        <div className="users-list-container">
+          {Object.keys(users).map(userId => {
+            const {username, password} = users[userId]
+            return (
+              <div key={userId} className="user-item">
+                <div className="username">
+                  <Icon>account_circle</Icon>
+                  <span className="label">{username}</span>
+                </div>
+                <div className="password">
+                  <Icon>vpn_key</Icon>
+                  <span className="label">{password}</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
