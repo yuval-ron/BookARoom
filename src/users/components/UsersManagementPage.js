@@ -20,6 +20,7 @@ class UsersManagementPage extends Component {
         <NewUserForm createNewUser={createNewUser} />
 
         {isLoading && <div>loading...</div>}
+
         <div className="users-list-container">
           {Object.keys(users).map(userId => {
             const {username, password} = users[userId]

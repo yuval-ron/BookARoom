@@ -22,5 +22,8 @@ export default {
   },
   getAllUsers: () => {
     return database.ref("users").once('value').then(snapshot => snapshot.val())
+  },
+  getAllRooms: () => {
+    return database.ref("rooms").once('value').then(snapshot => snapshot.val())
   }
 }
