@@ -1,11 +1,12 @@
 .rooms-list-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .rooms-list-container .room-item {
-  width: 250px;
+  width: 220px;
   height: 120px;
   border: 1px solid #ccc;
   display: flex;

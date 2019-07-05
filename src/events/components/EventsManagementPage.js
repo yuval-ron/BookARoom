@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllRooms} from '../../rooms/actions'
 import RoomsList from '../../rooms/components/RoomsList'
+import './EventsManagementPage.css'
 
 class EventsManagementPage extends Component {
   componentDidMount() {
@@ -15,6 +16,7 @@ class EventsManagementPage extends Component {
 
     return (
       <div className="events-management-container">
+        {!isLoading && <div className="title">Please choose room to book an event:</div>}
         <RoomsList isLoading={isLoading} rooms={rooms} />
       </div>
     )
