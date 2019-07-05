@@ -13,7 +13,7 @@ export default class HomePage extends Component {
     return (
       <div className="home-page">
         <div className="main-actions-container">
-          <MainActionButton text="Create new user" iconName="group" onClick={this.goToUserManagementPage} />
+          <MainActionButton text="Manage users" iconName="group" onClick={this.goToUserManagementPage} />
           <MainActionButton text="Create new event" iconName="date_range" />
         </div>
       </div>
