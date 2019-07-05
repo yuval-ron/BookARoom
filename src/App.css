@@ -1,0 +1,10 @@
+.main-actions-container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-text {
+  margin-left: 5px;
+}
