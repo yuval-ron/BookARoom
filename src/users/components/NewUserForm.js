@@ -14,6 +14,13 @@ export default class NewUserForm extends Component {
     this.setState({username: '', password: ''})
   }
 
+  createNewUser = () => {
+    const {createNewUser} = this.props
+    const {username, password} = this.state
+
+    createNewUser(username, password).then(this.clearFields)
+  }
+
   createOnChangeCallback = (fieldName) => {
     return (e) => {
       this.setState({
@@ -47,7 +54,7 @@ export default class NewUserForm extends Component {
           <Button variant="contained" onClick={this.clearFields}>
             Clear
           </Button>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={this.createNewUser}>
             Create
           </Button>
         </div>
