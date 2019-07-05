@@ -11,13 +11,22 @@ class EventsManagementPage extends Component {
     getAllRooms()
   }
 
+  createHandleRoomClickCallback = (roomId) => {
+    return () => {
+      const {router} = this.props
+
+      router.replace(`/events-management/rooms/${roomId}`)
+    }
+  }
+
   render() {
-    const {rooms, isLoading} = this.props
+    const {rooms, isLoading, children} = this.props
 
     return (
       <div className="events-management-container">
         {!isLoading && <div className="title">Please choose room to book an event:</div>}
-        <RoomsList isLoading={isLoading} rooms={rooms} />
+        <RoomsList isLoading={isLoading} rooms={rooms} createHandleRoomClickCallback={this.createHandleRoomClickCallback} />
+        {children}
       </div>
     )
   }
