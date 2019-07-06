@@ -20,3 +20,7 @@ export const getAllUsers = () => {
     })
   }
 }
+
+export const setCurrentUser = (username) => {
+  return {type: 'USERS@SET_CURRENT_USER', payload: username}
+}

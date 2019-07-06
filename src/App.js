@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 
 import AppBar from './commons/components/AppBar'
 
-export default class App extends Component {
+class App extends Component {
   componentDidMount() {
     this.goToCorrectLocation()
   }
@@ -12,9 +13,11 @@ export default class App extends Component {
   }
 
   goToCorrectLocation = () => {
-    const {router} = this.props
+    const {router, currentUser} = this.props
 
-    if (router.getCurrentLocation().pathname === '/') {
+    if (!currentUser && router.getCurrentLocation().pathname !== '/login') {
+      router.replace('/login')
+    } else if (router.getCurrentLocation().pathname === '/') {
       router.replace('/home')
     }
   }
@@ -36,3 +39,11 @@ export default class App extends Component {
     )
   }
 }
+
+const mapStateToProps = (store) =>{
+  return {
+    currentUser: store.usersData.currentUser
+  }
+}
+
+export default connect(mapStateToProps)(App)

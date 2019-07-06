@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {getAllUsers} from '../actions'
+import {getAllUsers, setCurrentUser} from '../actions'
 import TextField from '@material-ui/core/TextField'
 import FormContainer from '../../commons/components/FormContainer'
 
@@ -28,11 +28,12 @@ class LoginPage extends Component {
   }
 
   login = () => {
-    const {users, router} = this.props
+    const {users, router, setCurrentUser} = this.props
     const {username, password} = this.state
     const isCorrectLogin = users[username] && users[username].password === password
 
     if (isCorrectLogin) {
+      setCurrentUser(username)
       router.replace('/home')
     } else {
       this.setState({errorMessage: 'Wrong username or password'})
@@ -77,6 +78,6 @@ const mapStateToProps = (store) => {
   }
 }
 
-const mapDispatchToProps = {getAllUsers}
+const mapDispatchToProps = {getAllUsers, setCurrentUser}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

@@ -1,6 +1,7 @@
 const defaultState = {
   isLoading: false,
-  users: {}
+  users: {},
+  currentUser: ''
 }
 
 export default (state = defaultState, {type, payload}) => {
@@ -31,6 +32,13 @@ export default (state = defaultState, {type, payload}) => {
         ...state,
         isLoading: false,
         users: payload
+      }
+    }
+
+    case 'USERS@SET_CURRENT_USER': {
+      return {
+        ...state,
+        currentUser: payload
       }
     }
 
