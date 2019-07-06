@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import {setCurrentUser} from './users/actions'
 
 import AppBar from './commons/components/AppBar'
 
@@ -28,12 +29,18 @@ class App extends Component {
     router.replace('/')
   }
 
+  logout = () => {
+    const {setCurrentUser} = this.props
+
+    setCurrentUser('')
+  }
+
   render() {
     const {children, currentUser} = this.props
 
     return (
       <div>
-        <AppBar goToRoot={this.goToRoot} currentUser={currentUser} />
+        <AppBar goToRoot={this.goToRoot} currentUser={currentUser} logout={this.logout} />
         {children}
       </div>
     )
@@ -46,4 +53,6 @@ const mapStateToProps = (store) =>{
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = {setCurrentUser}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

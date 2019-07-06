@@ -9,7 +9,7 @@ import './AppBar.css'
 
 export default class BookARoomAppBar extends Component {
   render() {
-    const {goToRoot, currentUser} = this.props
+    const {goToRoot, currentUser, logout} = this.props
 
     return (
       <AppBar position="static">
@@ -21,6 +21,9 @@ export default class BookARoomAppBar extends Component {
             <div className="user-contorls-container">
               <Icon>account_circle</Icon>
               <span className="button-text">{`Welcome ${currentUser}`}</span>
+              <Button color="inherit" onClick={logout}>
+                <span className="button-text">Logout</span>
+              </Button>
             </div>
           }
         </Toolbar>
