@@ -5,6 +5,10 @@ import RoomsList from '../../rooms/components/RoomsList'
 import './EventsManagementPage.css'
 
 class EventsManagementPage extends Component {
+  state = {
+    selectedRoomId: ''
+  }
+
   componentDidMount() {
     const {getAllRooms} = this.props
 
@@ -15,17 +19,24 @@ class EventsManagementPage extends Component {
     return () => {
       const {router} = this.props
 
+      this.setState({selectedRoomId: roomId})
       router.replace(`/events-management/rooms/${roomId}`)
     }
   }
 
   render() {
     const {rooms, isLoading, children} = this.props
+    const {selectedRoomId} = this.state
 
     return (
       <div className="events-management-container">
         {!isLoading && <div className="title">Please choose room to book an event:</div>}
-        <RoomsList isLoading={isLoading} rooms={rooms} createHandleRoomClickCallback={this.createHandleRoomClickCallback} />
+        <RoomsList
+          isLoading={isLoading}
+          selectedRoomId={selectedRoomId}
+          rooms={rooms}
+          createHandleRoomClickCallback={this.createHandleRoomClickCallback}
+        />
         {children}
       </div>
     )

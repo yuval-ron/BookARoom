@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import TextField from '@material-ui/core/TextField'
 import FormContainer from '../../commons/components/FormContainer'
+import moment from 'moment'
 
 class NewEventForm extends Component {
   render() {
@@ -8,6 +9,7 @@ class NewEventForm extends Component {
 
     return (
       <FormContainer title={`Create new event in room: ${room.name}`} buttons={formButtons}>
+        <div>{`The event is planned for: ${moment(newEvent.date).format("MMM Do YY")}`}</div>
         <TextField
           id="name"
           label="Event name"
@@ -17,7 +19,7 @@ class NewEventForm extends Component {
         />
         <TextField
           id="startTime"
-          label="Event start time"
+          label="Start time"
           type="time"
           value={newEvent.startTime}
           InputLabelProps={{shrink: true}}
@@ -26,7 +28,7 @@ class NewEventForm extends Component {
         />
         <TextField
           id="endTime"
-          label="Event end time"
+          label="End time"
           type="time"
           value={newEvent.endTime}
           InputLabelProps={{shrink: true}}

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
+import Dialog from '@material-ui/core/Dialog'
 import NewEventForm from '../../events/components/NewEventForm'
 import Calendar from '../../events/components/Calendar'
 
@@ -8,10 +9,12 @@ class RoomPage extends Component {
   state = {
     newEvent: {
       name: '',
-      startTime: moment().format('YYYY-MM-DDThh:mm'),
-      endTime: moment().format('YYYY-MM-DDThh:mm'),
+      date: moment().toISOString(),
+      startTime: moment().format('hh:mm'),
+      endTime: moment().format('hh:mm'),
       ownerId: ''
-    }
+    },
+    isNewEventDialogOpen: false
   }
 
   createOnChangeCallback = (fieldName) => {
@@ -27,13 +30,37 @@ class RoomPage extends Component {
     }
   }
 
+  createHandleAddNewEventClickCallback = (dayMoment) => {
+    return () => this.handleAddNewEventClick(dayMoment)
+  }
+
+  handleAddNewEventClick = (dayMoment) => {
+    const {newEvent} = this.state
+
+    this.setState({
+      newEvent: {
+        ...newEvent,
+        date: dayMoment.toISOString()
+      }
+    })
+    this.openNewEventDialog()
+  }
+
+  openNewEventDialog = () => {
+    this.setState({isNewEventDialogOpen: true})
+  }
+
+  closeNewEventDialog = () => {
+    this.setState({isNewEventDialogOpen: false})
+  }
+
   render() {
     const {params, rooms} = this.props
-    const {newEvent} = this.state
+    const {newEvent, isNewEventDialogOpen} = this.state
     const {id} = params
     const room = rooms[id]
     const formButtons = [
-      {name: 'Clear', onClick: () => {}},
+      {name: 'Cancel', onClick: this.closeNewEventDialog},
       {name: 'Create', onClick: () => {}, isPrimary: true},
     ]
 
@@ -41,10 +68,18 @@ class RoomPage extends Component {
       return null
     }
 
-    // return null
-
     return (
-      <Calendar />
+      <div>
+        <Calendar createHandleAddNewEventClickCallback={this.createHandleAddNewEventClickCallback} />
+        <Dialog open={isNewEventDialogOpen}>
+          <NewEventForm
+            newEvent={newEvent}
+            createOnChangeCallback={this.createOnChangeCallback}
+            formButtons={formButtons}
+            room={room}
+          />
+        </Dialog>
+      </div>
     )
   }
 }

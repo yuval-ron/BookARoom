@@ -5,25 +5,26 @@ import './RoomsList.css'
 
 export default class RoomsList extends Component {
   render() {
-    const {rooms, isLoading, createHandleRoomClickCallback} = this.props
+    const {rooms, isLoading, createHandleRoomClickCallback, selectedRoomId} = this.props
 
     return (
       <div className="rooms-list-container">
         {isLoading && <div>loading...</div>}
         {Object.keys(rooms).map(roomId => {
           const room = rooms[roomId]
-          return <RoomItem key={roomId} room={room} onClick={createHandleRoomClickCallback(roomId)} />
+          const isSelected = roomId === selectedRoomId
+          return <RoomItem key={roomId} isSelected={isSelected} room={room} onClick={createHandleRoomClickCallback(roomId)} />
         })}
       </div>
     )
   }
 }
 
-const RoomItem = ({room, onClick}) => {
+const RoomItem = ({room, isSelected, onClick}) => {
   const {name, color} = room
 
   return (
-    <div className="room-item" onClick={onClick}>
+    <div className={`room-item ${isSelected ? 'selected' : ''}`} onClick={onClick}>
       <Icon>event_seat</Icon>
       <span className="name">{room.name}</span>
     </div>

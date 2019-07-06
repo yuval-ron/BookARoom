@@ -1,3 +1,7 @@
+.users-management-container {
+  padding-top: 20px;
+}
+
 .users-management-container .users-list-container {
   display: flex;
   padding: 10px;

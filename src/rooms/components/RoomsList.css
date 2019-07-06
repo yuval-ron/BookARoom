@@ -26,6 +26,10 @@
   transform: scale(1.05);
 }
 
+.rooms-list-container .room-item.selected {
+  opacity: 1;
+}
+
 .rooms-list-container .room-item .name {
   margin-left: 10px;
 }

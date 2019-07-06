@@ -19,6 +19,8 @@ class Calendar extends Component {
   }
 
   render() {
+    const {createHandleAddNewEventClickCallback} = this.props
+
     return (
       <div className="calendar-container">
         {
@@ -35,7 +37,7 @@ class Calendar extends Component {
                   </span>
                 </div>
                 <div className="day-events-container">
-                  <div className="new-event-button">
+                  <div className="new-event-button" onClick={createHandleAddNewEventClickCallback(dayMoment)}>
                     <Icon>add</Icon>
                   </div>
                 </div>
