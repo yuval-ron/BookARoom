@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import FormContainer from '../../commons/components/FormContainer'
 
 import './NewUserForm.css'
 
@@ -31,11 +31,14 @@ export default class NewUserForm extends Component {
 
   render() {
     const {username, password} = this.state
+    const buttons = [
+      {name: 'Clear', onClick: this.clearFields},
+      {name: 'Create', onClick: this.createNewUser, isPrimary: true}
+    ]
 
     return (
-      <div className="new-user-form-container">
-        <h4>Create new user:</h4>
-        <div className="inputs-container">
+      <FormContainer title="Create new user" buttons={buttons}>
+        <div className="new-user-inputs-container">
           <TextField
             id="username"
             label="Username"
@@ -50,15 +53,7 @@ export default class NewUserForm extends Component {
             onChange={this.createOnChangeCallback('password')}
           />
         </div>
-        <div className="controls">
-          <Button variant="contained" onClick={this.clearFields}>
-            Clear
-          </Button>
-          <Button variant="contained" color="primary" onClick={this.createNewUser}>
-            Create
-          </Button>
-        </div>
-      </div>
+      </FormContainer>
     )
   }
 }
