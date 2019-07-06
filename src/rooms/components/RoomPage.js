@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
+import {get} from 'lodash'
 import Dialog from '@material-ui/core/Dialog'
 import {getAllUsers} from '../../users/actions'
-import {createNewEvent} from '../../events/actions'
+import {createNewEvent, getAllEventsOfCurrentWeekByRoomId} from '../../events/actions'
 import NewEventForm from '../../events/components/NewEventForm'
 import Calendar from '../../events/components/Calendar'
+import {getWeekId} from '../../commons/utils'
 
 class RoomPage extends Component {
   state = {
@@ -20,9 +22,11 @@ class RoomPage extends Component {
   }
 
   componentDidMount() {
-    const {getAllUsers} = this.props
+    const {getAllUsers, getAllEventsOfCurrentWeekByRoomId, params} = this.props
+    const roomId = params.id
 
     getAllUsers()
+    getAllEventsOfCurrentWeekByRoomId(roomId)
   }
 
   createOnChangeCallback = (fieldName) => {
@@ -70,7 +74,7 @@ class RoomPage extends Component {
   }
 
   render() {
-    const {params, rooms, users} = this.props
+    const {params, rooms, users, events} = this.props
     const {newEvent, isNewEventDialogOpen} = this.state
     const {id} = params
     const room = rooms[id]
@@ -85,7 +89,10 @@ class RoomPage extends Component {
 
     return (
       <div>
-        <Calendar createHandleAddNewEventClickCallback={this.createHandleAddNewEventClickCallback} />
+        <Calendar
+          createHandleAddNewEventClickCallback={this.createHandleAddNewEventClickCallback}
+          weekEvents={get(events, `${id}.${getWeekId()}`, {})}
+        />
         <Dialog open={isNewEventDialogOpen}>
           <NewEventForm
             newEvent={newEvent}
@@ -103,10 +110,11 @@ class RoomPage extends Component {
 const mapStateToProps = (store) => {
   return {
     rooms: store.roomsData.rooms,
-    users: store.usersData.users
+    users: store.usersData.users,
+    events: store.eventsData.events
   }
 }
 
-const mapDispatchToProps = {getAllUsers, createNewEvent}
+const mapDispatchToProps = {getAllUsers, createNewEvent, getAllEventsOfCurrentWeekByRoomId}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomPage)

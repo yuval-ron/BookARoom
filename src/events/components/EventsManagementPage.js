@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllRooms} from '../../rooms/actions'
+import {getAllEventsOfCurrentWeekByRoomId} from '../../events/actions'
 import RoomsList from '../../rooms/components/RoomsList'
 import './EventsManagementPage.css'
 
@@ -17,9 +18,10 @@ class EventsManagementPage extends Component {
 
   createHandleRoomClickCallback = (roomId) => {
     return () => {
-      const {router} = this.props
+      const {router, getAllEventsOfCurrentWeekByRoomId} = this.props
 
       this.setState({selectedRoomId: roomId})
+      getAllEventsOfCurrentWeekByRoomId(roomId)
       router.replace(`/events-management/rooms/${roomId}`)
     }
   }
@@ -50,6 +52,6 @@ const mapStateToProps = (store) => {
   }
 }
 
-const mapDispatchToProps = {getAllRooms}
+const mapDispatchToProps = {getAllRooms, getAllEventsOfCurrentWeekByRoomId}
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsManagementPage)

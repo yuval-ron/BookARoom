@@ -5,8 +5,21 @@ export const createNewEvent = (event) => {
     dispatch({type: 'EVENTS@CREATE_EVENT_LOADING'})
 
     return api.createNewEvent(event).then(() => {
-      return dispatch({type: 'EVENTS@CREATE_EVENT_SUCCESS'})
-      // return dispatch(getAllUsers())
+      dispatch({type: 'EVENTS@CREATE_EVENT_SUCCESS'})
+      return dispatch(getAllEventsOfCurrentWeekByRoomId(event.roomId))
+    })
+  }
+}
+
+export const getAllEventsOfCurrentWeekByRoomId = (roomId) => {
+  return (dispatch) => {
+    dispatch({type: 'EVENTS@GET_EVENTS_OF_WEEK_BY_ROOM_LOADING'})
+
+    return api.getAllEventsOfCurrentWeekByRoomId(roomId).then((data) => {
+      return dispatch({type: 'EVENTS@GET_EVENTS_OF_WEEK_BY_ROOM_SUCCESS', payload: {
+        data,
+        roomId
+      }})
     })
   }
 }

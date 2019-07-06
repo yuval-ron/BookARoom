@@ -18,7 +18,7 @@ class Calendar extends Component {
   }
 
   render() {
-    const {createHandleAddNewEventClickCallback} = this.props
+    const {createHandleAddNewEventClickCallback, weekEvents} = this.props
 
     return (
       <div className="calendar-container">
@@ -39,6 +39,13 @@ class Calendar extends Component {
                   <div className="new-event-button" onClick={createHandleAddNewEventClickCallback(dayMoment)}>
                     <Icon>add</Icon>
                   </div>
+                  {weekEvents[dayName] && Object.keys(weekEvents[dayName]).map(eventId => {
+                    const event = weekEvents[dayName][eventId]
+
+                    return (
+                      <div key={eventId}>{event.name}</div>
+                    )
+                  })}
                 </div>
               </div>
             )

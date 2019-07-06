@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import moment from 'moment'
+import {getWeekId} from '../commons/utils'
 
-// Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyB0_26MZw1yEudBgCI0JF934KqLXr-s7mw",
   authDomain: "bookaroom-31e95.firebaseapp.com",
@@ -29,9 +29,14 @@ export default {
   },
   createNewEvent: (event) => {
     const eventDateMoment = moment(event.date)
-    const weekKey = `${eventDateMoment.week()}-${eventDateMoment.year()}`
+    const weekKey = getWeekId(eventDateMoment)
     const dayName = eventDateMoment.format('dddd')
 
     return database.ref(`events/${event.roomId}/${weekKey}/${dayName}`).push(event)
-  }
+  },
+  getAllEventsOfCurrentWeekByRoomId: (roomId) => {
+    const weekKey = getWeekId()
+
+    return database.ref(`events/${roomId}/${weekKey}`).once('value').then(snapshot => snapshot.val())
+  },
 }
