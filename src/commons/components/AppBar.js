@@ -9,7 +9,7 @@ import './AppBar.css'
 
 export default class BookARoomAppBar extends Component {
   render() {
-    const {goToRoot} = this.props
+    const {goToRoot, currentUser} = this.props
 
     return (
       <AppBar position="static">
@@ -17,12 +17,12 @@ export default class BookARoomAppBar extends Component {
           <Typography variant="h6" className="app-logo" onClick={goToRoot}>
             Book a Room
           </Typography>
-          <div className="user-contorls-container">
-            <Button color="inherit">
+          {currentUser &&
+            <div className="user-contorls-container">
               <Icon>account_circle</Icon>
-              <span className="button-text">Login</span>
-            </Button>
-          </div>
+              <span className="button-text">{`Welcome ${currentUser}`}</span>
+            </div>
+          }
         </Toolbar>
       </AppBar>
     )

@@ -29,11 +29,11 @@ class App extends Component {
   }
 
   render() {
-    const {children} = this.props
+    const {children, currentUser} = this.props
 
     return (
       <div>
-        <AppBar goToRoot={this.goToRoot} />
+        <AppBar goToRoot={this.goToRoot} currentUser={currentUser} />
         {children}
       </div>
     )
