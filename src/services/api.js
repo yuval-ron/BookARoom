@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import moment from 'moment'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -25,5 +26,12 @@ export default {
   },
   getAllRooms: () => {
     return database.ref("rooms").once('value').then(snapshot => snapshot.val())
+  },
+  createNewEvent: (event) => {
+    const eventDateMoment = moment(event.date)
+    const weekKey = `${eventDateMoment.week()}-${eventDateMoment.year()}`
+    const dayName = eventDateMoment.format('dddd')
+
+    return database.ref(`events/${event.roomId}/${weekKey}/${dayName}`).push(event)
   }
 }

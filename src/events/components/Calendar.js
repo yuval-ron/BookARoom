@@ -8,7 +8,6 @@ class Calendar extends Component {
   getCurrentWeekDates = () => {
     const currentDate = moment()
     const weekStart = currentDate.clone().startOf('week')
-    const weekEnd = currentDate.clone().endOf('week')
 
     const days = []
     for (let i = 0; i <= 6; i++) {

@@ -41,7 +41,12 @@ class NewEventForm extends Component {
         />
         <FormControl>
           <InputLabel>Owner username</InputLabel>
-          <Select value={newEvent.ownerId} style={{width: '230px'}} placeholder="Owner username">
+          <Select
+            value={newEvent.ownerId}
+            style={{width: '230px'}}
+            placeholder="Owner username"
+            onChange={createOnChangeCallback('ownerId')}
+          >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>

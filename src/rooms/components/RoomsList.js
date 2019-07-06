@@ -21,8 +21,6 @@ export default class RoomsList extends Component {
 }
 
 const RoomItem = ({room, isSelected, onClick}) => {
-  const {name, color} = room
-
   return (
     <div className={`room-item ${isSelected ? 'selected' : ''}`} onClick={onClick}>
       <Icon>event_seat</Icon>

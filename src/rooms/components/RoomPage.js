@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import moment from 'moment'
 import Dialog from '@material-ui/core/Dialog'
 import {getAllUsers} from '../../users/actions'
+import {createNewEvent} from '../../events/actions'
 import NewEventForm from '../../events/components/NewEventForm'
 import Calendar from '../../events/components/Calendar'
 
@@ -61,6 +62,13 @@ class RoomPage extends Component {
     this.setState({isNewEventDialogOpen: false})
   }
 
+  handleCreateNewEvent = () => {
+    const {createNewEvent, params} = this.props
+    const {newEvent} = this.state
+
+    createNewEvent({...newEvent, roomId: params.id})
+  }
+
   render() {
     const {params, rooms, users} = this.props
     const {newEvent, isNewEventDialogOpen} = this.state
@@ -68,7 +76,7 @@ class RoomPage extends Component {
     const room = rooms[id]
     const formButtons = [
       {name: 'Cancel', onClick: this.closeNewEventDialog},
-      {name: 'Create', onClick: () => {}, isPrimary: true},
+      {name: 'Create', onClick: this.handleCreateNewEvent, isPrimary: true},
     ]
 
     if (!room) {
@@ -99,6 +107,6 @@ const mapStateToProps = (store) => {
   }
 }
 
-const mapDispatchToProps = {getAllUsers}
+const mapDispatchToProps = {getAllUsers, createNewEvent}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomPage)
