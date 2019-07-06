@@ -5,7 +5,7 @@ export const createNewEvent = (event) => {
     dispatch({type: 'EVENTS@CREATE_EVENT_LOADING'})
 
     return api.createNewEvent(event).then(() => {
-      dispatch({type: 'EVENTS@CREATE_EVENT_SUCCESS'})
+      return dispatch({type: 'EVENTS@CREATE_EVENT_SUCCESS'})
       // return dispatch(getAllUsers())
     })
   }

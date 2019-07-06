@@ -66,7 +66,7 @@ class RoomPage extends Component {
     const {createNewEvent, params} = this.props
     const {newEvent} = this.state
 
-    createNewEvent({...newEvent, roomId: params.id})
+    createNewEvent({...newEvent, roomId: params.id}).then(this.closeNewEventDialog)
   }
 
   render() {
