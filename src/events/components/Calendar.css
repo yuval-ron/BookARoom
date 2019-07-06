@@ -54,6 +54,7 @@
   margin: 3px;
   padding: 3px;
   border-radius: 3px;
+  position: relative;
 }
 
 .calendar-container .day .day-events-container .event-container .event-time,
@@ -72,4 +73,14 @@
 .calendar-container .day .day-events-container .event-container .event-name .text,
 .calendar-container .day .day-events-container .event-container .event-owner .text {
   margin-left: 5px;
+}
+
+.calendar-container .day .day-events-container .event-container .controls {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.calendar-container .day .day-events-container .event-container .controls .button {
+  cursor: pointer;
 }

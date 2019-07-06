@@ -11,6 +11,17 @@ export const createNewEvent = (event) => {
   }
 }
 
+export const removeEvent = (event, eventId) => {
+  return (dispatch) => {
+    dispatch({type: 'EVENTS@REMOVE_EVENT_LOADING'})
+
+    return api.removeEvent(event, eventId).then(() => {
+      dispatch({type: 'EVENTS@REMOVE_EVENT_SUCCESS'})
+      return dispatch(getAllEventsOfCurrentWeekByRoomId(event.roomId))
+    })
+  }
+}
+
 export const getAllEventsOfCurrentWeekByRoomId = (roomId) => {
   return (dispatch) => {
     dispatch({type: 'EVENTS@GET_EVENTS_OF_WEEK_BY_ROOM_LOADING'})

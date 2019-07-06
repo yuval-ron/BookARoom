@@ -17,6 +17,14 @@ class Calendar extends Component {
     return days
   }
 
+  createRemoveEventCallback = (event, eventId) => {
+    return () => {
+      const {removeEvent} = this.props
+
+      removeEvent(event, eventId)
+    }
+  }
+
   render() {
     const {createHandleAddNewEventClickCallback, weekEvents} = this.props
 
@@ -33,7 +41,7 @@ class Calendar extends Component {
                 .sort((aId, bId) => {
                   return weekEvents[dayName][aId].startTime < weekEvents[dayName][bId].startTime ? -1 : 1
                 })
-                .map(id => weekEvents[dayName][id])
+                .map(id => ({...weekEvents[dayName][id], id}))
             }
 
             return (
@@ -62,6 +70,11 @@ class Calendar extends Component {
                         <div className="event-owner">
                           <Icon style={{fontSize: '15px'}}>account_circle</Icon>
                           <span className="text">{event.ownerId}</span>
+                        </div>
+                        <div className="controls">
+                          <div className="remove-button button" onClick={this.createRemoveEventCallback(event, event.id)}>
+                            <Icon style={{fontSize: '15px'}}>highlight_off</Icon>
+                          </div>
                         </div>
                       </div>
                     )

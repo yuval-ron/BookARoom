@@ -38,10 +38,7 @@ export default (state = defaultState, {type, payload}) => {
           ...state.events,
           [payload.roomId]: {
             ...get(state, `events[${payload.roomId}]`, {}),
-            [getWeekId()]: {
-              ...get(state, `events[${payload.roomId}][${getWeekId()}]`, {}),
-              ...payload.data
-            }
+            [getWeekId()]: payload.data
           }
         }
       }

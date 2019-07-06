@@ -39,4 +39,11 @@ export default {
 
     return database.ref(`events/${roomId}/${weekKey}`).once('value').then(snapshot => snapshot.val())
   },
+  removeEvent: (event, eventId) => {
+    const eventDateMoment = moment(event.date)
+    const weekKey = getWeekId(eventDateMoment)
+    const dayName = eventDateMoment.format('dddd')
+
+    return database.ref(`events/${event.roomId}/${weekKey}/${dayName}/${eventId}`).remove()
+  }
 }

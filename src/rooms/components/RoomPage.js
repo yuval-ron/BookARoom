@@ -4,7 +4,7 @@ import moment from 'moment'
 import {get} from 'lodash'
 import Dialog from '@material-ui/core/Dialog'
 import {getAllUsers} from '../../users/actions'
-import {createNewEvent, getAllEventsOfCurrentWeekByRoomId} from '../../events/actions'
+import {createNewEvent, getAllEventsOfCurrentWeekByRoomId, removeEvent} from '../../events/actions'
 import NewEventForm from '../../events/components/NewEventForm'
 import Calendar from '../../events/components/Calendar'
 import {getWeekId} from '../../commons/utils'
@@ -105,7 +105,7 @@ class RoomPage extends Component {
   }
 
   render() {
-    const {params, rooms, users, events} = this.props
+    const {params, rooms, users, events, removeEvent} = this.props
     const {newEvent, isNewEventDialogOpen, errorMessage} = this.state
     const {id} = params
     const room = rooms[id]
@@ -123,6 +123,7 @@ class RoomPage extends Component {
         <Calendar
           createHandleAddNewEventClickCallback={this.createHandleAddNewEventClickCallback}
           weekEvents={get(events, `${id}.${getWeekId()}`, {})}
+          removeEvent={removeEvent}
         />
         <Dialog open={isNewEventDialogOpen}>
           <NewEventForm
@@ -147,6 +148,6 @@ const mapStateToProps = (store) => {
   }
 }
 
-const mapDispatchToProps = {getAllUsers, createNewEvent, getAllEventsOfCurrentWeekByRoomId}
+const mapDispatchToProps = {getAllUsers, createNewEvent, getAllEventsOfCurrentWeekByRoomId, removeEvent}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomPage)
