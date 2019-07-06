@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import Dialog from '@material-ui/core/Dialog'
+import {getAllUsers} from '../../users/actions'
 import NewEventForm from '../../events/components/NewEventForm'
 import Calendar from '../../events/components/Calendar'
 
@@ -15,6 +16,12 @@ class RoomPage extends Component {
       ownerId: ''
     },
     isNewEventDialogOpen: false
+  }
+
+  componentDidMount() {
+    const {getAllUsers} = this.props
+
+    getAllUsers()
   }
 
   createOnChangeCallback = (fieldName) => {
@@ -55,7 +62,7 @@ class RoomPage extends Component {
   }
 
   render() {
-    const {params, rooms} = this.props
+    const {params, rooms, users} = this.props
     const {newEvent, isNewEventDialogOpen} = this.state
     const {id} = params
     const room = rooms[id]
@@ -77,6 +84,7 @@ class RoomPage extends Component {
             createOnChangeCallback={this.createOnChangeCallback}
             formButtons={formButtons}
             room={room}
+            users={users}
           />
         </Dialog>
       </div>
@@ -86,8 +94,11 @@ class RoomPage extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    rooms: store.roomsData.rooms
+    rooms: store.roomsData.rooms,
+    users: store.usersData.users
   }
 }
 
-export default connect(mapStateToProps)(RoomPage)
+const mapDispatchToProps = {getAllUsers}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoomPage)
