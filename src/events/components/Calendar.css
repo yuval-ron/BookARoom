@@ -7,7 +7,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  border: 1px solid #3f51b5;
 }
 
 .calendar-container .day .day-name {
@@ -46,4 +45,31 @@
 
 .calendar-container .day .day-events-container .new-event-button:hover {
   background-color: #ddd;
+}
+
+.calendar-container .day .day-events-container .event-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #3f51b5;
+  margin: 3px;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.calendar-container .day .day-events-container .event-container .event-time,
+.calendar-container .day .day-events-container .event-container .event-name,
+.calendar-container .day .day-events-container .event-container .event-owner {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.calendar-container .day .day-events-container .event-container .event-time {
+  font-size: 12px !important;
+}
+
+.calendar-container .day .day-events-container .event-container .event-time .text,
+.calendar-container .day .day-events-container .event-container .event-name .text,
+.calendar-container .day .day-events-container .event-container .event-owner .text {
+  margin-left: 5px;
 }

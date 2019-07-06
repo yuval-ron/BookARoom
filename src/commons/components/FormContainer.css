@@ -13,3 +13,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.form-container .error-message {
+  color: red;
+  margin: 20px 0;
+}

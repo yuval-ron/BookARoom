@@ -5,12 +5,13 @@ import './FormContainer.css'
 
 export default class FormContainer extends Component {
   render() {
-    const {children, title, buttons} = this.props
+    const {children, title, buttons, errorMessage} = this.props
 
     return (
       <div className="form-container">
         <h4>{title}</h4>
         {children}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <div className="controls">
           {buttons.map((button, index) => {
             return (

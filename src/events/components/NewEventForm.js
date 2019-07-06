@@ -9,10 +9,10 @@ import moment from 'moment'
 
 class NewEventForm extends Component {
   render() {
-    const {newEvent, createOnChangeCallback, formButtons, room, users} = this.props
+    const {newEvent, createOnChangeCallback, formButtons, room, users, errorMessage} = this.props
 
     return (
-      <FormContainer title={`Create new event in room: ${room.name}`} buttons={formButtons}>
+      <FormContainer title={`Create new event in room: ${room.name}`} buttons={formButtons} errorMessage={errorMessage}>
         <div>{`The event is planned for: ${moment(newEvent.date).format("MMM Do YY")}`}</div>
         <TextField
           id="name"

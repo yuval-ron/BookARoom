@@ -9,15 +9,18 @@ import NewEventForm from '../../events/components/NewEventForm'
 import Calendar from '../../events/components/Calendar'
 import {getWeekId} from '../../commons/utils'
 
+const defaultNewEvent = {
+  name: '',
+  date: moment().toISOString(),
+  startTime: moment().format('hh:mm'),
+  endTime: moment().format('hh:mm'),
+  ownerId: ''
+}
+
 class RoomPage extends Component {
   state = {
-    newEvent: {
-      name: '',
-      date: moment().toISOString(),
-      startTime: moment().format('hh:mm'),
-      endTime: moment().format('hh:mm'),
-      ownerId: ''
-    },
+    newEvent: {...defaultNewEvent},
+    errorMessage: '',
     isNewEventDialogOpen: false
   }
 
@@ -67,15 +70,43 @@ class RoomPage extends Component {
   }
 
   handleCreateNewEvent = () => {
-    const {createNewEvent, params} = this.props
+    const {createNewEvent, params, events} = this.props
     const {newEvent} = this.state
+    const dayOfNewEvent = moment(newEvent.date).format('dddd')
+    const existingEventsOnSameDay = get(events, `${params.id}.${getWeekId()}.${dayOfNewEvent}`, {})
+    const conflictEventId = this.getEventIdOfConflictWithNewEvent(newEvent, existingEventsOnSameDay)
+    const conflictEvent = existingEventsOnSameDay[conflictEventId]
 
-    createNewEvent({...newEvent, roomId: params.id}).then(this.closeNewEventDialog)
+    if (!newEvent.name) {
+      this.setState({errorMessage: 'Please fill event name.'})
+    } else if (!newEvent.ownerId) {
+      this.setState({errorMessage: 'Please select event owner.'})
+    } else if (newEvent.startTime >= newEvent.endTime) {
+      this.setState({errorMessage: 'Event start time must be before end time.'})
+    } else if (conflictEvent) {
+      this.setState({errorMessage: `You can\'t create an event at the same time with: "${conflictEvent.name}" by ${conflictEvent.ownerId}.`})
+    } else {
+      createNewEvent({...newEvent, roomId: params.id}).then(this.closeNewEventDialog)
+      this.setState({newEvent: {...defaultNewEvent}, errorMessage: ''})
+    }
+
+  }
+
+  getEventIdOfConflictWithNewEvent = (newEvent, existingEventsOnSameDay) => {
+    return Object.keys(existingEventsOnSameDay).find(eventId => {
+      const event = existingEventsOnSameDay[eventId]
+
+      return (
+        (event.startTime > newEvent.startTime && newEvent.endTime > event.endTime) ||
+        (event.startTime < newEvent.startTime && newEvent.startTime < event.endTime) ||
+        (event.startTime < newEvent.endTime && newEvent.endTime < event.endTime)
+      )
+    })
   }
 
   render() {
     const {params, rooms, users, events} = this.props
-    const {newEvent, isNewEventDialogOpen} = this.state
+    const {newEvent, isNewEventDialogOpen, errorMessage} = this.state
     const {id} = params
     const room = rooms[id]
     const formButtons = [
@@ -100,6 +131,7 @@ class RoomPage extends Component {
             formButtons={formButtons}
             room={room}
             users={users}
+            errorMessage={errorMessage}
           />
         </Dialog>
       </div>
