@@ -10,6 +10,7 @@ import UsersManagementPage from './users/components/UsersManagementPage'
 import EventsManagementPage from './events/components/EventsManagementPage'
 import RoomsManagementPage from './rooms/components/RoomsManagementPage'
 import RoomPage from './rooms/components/RoomPage'
+import LoginPage from './users/components/LoginPage'
 import * as serviceWorker from './serviceWorker'
 import store from './store.js'
 
@@ -17,6 +18,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <Route path='login' component={LoginPage} />
         <Route path="home" component={HomePage} />
         <Route path='users-management' component={UsersManagementPage} />
         <Route path='rooms-management' component={RoomsManagementPage} />
