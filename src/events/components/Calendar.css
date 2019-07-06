@@ -1,0 +1,49 @@
+.calendar-container {
+  display: flex;
+  padding: 0 10px;
+}
+
+.calendar-container .day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #3f51b5;
+}
+
+.calendar-container .day .day-name {
+  background-color: #3f51b5;
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-right: 1px solid white;
+}
+
+.calendar-container .day .day-name.day-Saturday {
+  border-right: none;
+}
+
+.calendar-container .day .day-name .sub-title {
+  font-size: 10px;
+}
+
+.calendar-container .day .day-events-container {
+  min-height: 300px;
+}
+
+.calendar-container .day .day-events-container .new-event-button {
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.calendar-container .day .day-events-container .new-event-button:hover {
+  background-color: #ddd;
+}

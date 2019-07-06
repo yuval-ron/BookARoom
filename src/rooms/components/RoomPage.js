@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import NewEventForm from '../../events/components/NewEventForm'
+import Calendar from '../../events/components/Calendar'
 
 class RoomPage extends Component {
   state = {
@@ -40,16 +41,11 @@ class RoomPage extends Component {
       return null
     }
 
-    return null
+    // return null
 
-    // return (
-    //   <NewEventForm
-    //     newEvent={newEvent}
-    //     room={room}
-    //     formButtons={formButtons}
-    //     createOnChangeCallback={this.createOnChangeCallback}
-    //   />
-    // )
+    return (
+      <Calendar />
+    )
   }
 }
 

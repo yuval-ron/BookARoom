@@ -18,7 +18,7 @@ class NewEventForm extends Component {
         <TextField
           id="startTime"
           label="Event start time"
-          type="datetime-local"
+          type="time"
           value={newEvent.startTime}
           InputLabelProps={{shrink: true}}
           style={{width: '230px'}}
@@ -27,7 +27,7 @@ class NewEventForm extends Component {
         <TextField
           id="endTime"
           label="Event end time"
-          type="datetime-local"
+          type="time"
           value={newEvent.endTime}
           InputLabelProps={{shrink: true}}
           style={{width: '230px'}}
