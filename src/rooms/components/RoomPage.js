@@ -69,6 +69,13 @@ class RoomPage extends Component {
     this.setState({isNewEventDialogOpen: false})
   }
 
+  createEditEventCallback = (event) => {
+    return () => {
+      this.setState({newEvent: event})
+      this.openNewEventDialog()
+    }
+  }
+
   handleCreateNewEvent = () => {
     const {createNewEvent, params, events} = this.props
     const {newEvent} = this.state
@@ -124,6 +131,7 @@ class RoomPage extends Component {
           createHandleAddNewEventClickCallback={this.createHandleAddNewEventClickCallback}
           weekEvents={get(events, `${id}.${getWeekId()}`, {})}
           removeEvent={removeEvent}
+          createEditEventCallback={this.createEditEventCallback}
         />
         <Dialog open={isNewEventDialogOpen}>
           <NewEventForm

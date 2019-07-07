@@ -55,6 +55,7 @@
   padding: 3px;
   border-radius: 3px;
   position: relative;
+  cursor: pointer;
 }
 
 .calendar-container .day .day-events-container .event-container .event-time,

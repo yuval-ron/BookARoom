@@ -26,7 +26,7 @@ class Calendar extends Component {
   }
 
   render() {
-    const {createHandleAddNewEventClickCallback, weekEvents} = this.props
+    const {createHandleAddNewEventClickCallback, weekEvents, createEditEventCallback} = this.props
 
     return (
       <div className="calendar-container">
@@ -72,6 +72,9 @@ class Calendar extends Component {
                           <span className="text">{event.ownerId}</span>
                         </div>
                         <div className="controls">
+                          <div className="edit-button button" onClick={createEditEventCallback(event)}>
+                            <Icon style={{fontSize: '15px'}}>edit</Icon>
+                          </div>
                           <div className="remove-button button" onClick={this.createRemoveEventCallback(event, event.id)}>
                             <Icon style={{fontSize: '15px'}}>highlight_off</Icon>
                           </div>

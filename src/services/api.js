@@ -32,7 +32,11 @@ export default {
     const weekKey = getWeekId(eventDateMoment)
     const dayName = eventDateMoment.format('dddd')
 
-    return database.ref(`events/${event.roomId}/${weekKey}/${dayName}`).push(event)
+    if (event.id) {
+      return database.ref(`events/${event.roomId}/${weekKey}/${dayName}/${event.id}`).set(event)
+    } else {
+      return database.ref(`events/${event.roomId}/${weekKey}/${dayName}`).push(event)
+    }
   },
   getAllEventsOfCurrentWeekByRoomId: (roomId) => {
     const weekKey = getWeekId()
