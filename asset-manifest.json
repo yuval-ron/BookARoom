@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Bookaroom/static/css/main.ce22374a.chunk.css",
+    "main.js": "/Bookaroom/static/js/main.8a074a0f.chunk.js",
+    "main.js.map": "/Bookaroom/static/js/main.8a074a0f.chunk.js.map",
+    "runtime~main.js": "/Bookaroom/static/js/runtime~main.c8f4c6d7.js",
+    "runtime~main.js.map": "/Bookaroom/static/js/runtime~main.c8f4c6d7.js.map",
+    "static/js/2.c6d42939.chunk.js": "/Bookaroom/static/js/2.c6d42939.chunk.js",
+    "static/js/2.c6d42939.chunk.js.map": "/Bookaroom/static/js/2.c6d42939.chunk.js.map",
+    "index.html": "/Bookaroom/index.html",
+    "precache-manifest.10c01ed8964f5764734226e9c9148877.js": "/Bookaroom/precache-manifest.10c01ed8964f5764734226e9c9148877.js",
+    "service-worker.js": "/Bookaroom/service-worker.js",
+    "static/css/main.ce22374a.chunk.css.map": "/Bookaroom/static/css/main.ce22374a.chunk.css.map"
+  }
+}
