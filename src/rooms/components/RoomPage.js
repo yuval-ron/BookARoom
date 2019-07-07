@@ -66,7 +66,7 @@ class RoomPage extends Component {
   }
 
   closeNewEventDialog = () => {
-    this.setState({isNewEventDialogOpen: false})
+    this.setState({isNewEventDialogOpen: false, newEvent: {...defaultNewEvent}})
   }
 
   createEditEventCallback = (event) => {
@@ -91,7 +91,7 @@ class RoomPage extends Component {
     } else if (newEvent.startTime >= newEvent.endTime) {
       this.setState({errorMessage: 'Event start time must be before end time.'})
     } else if (conflictEvent) {
-      this.setState({errorMessage: `You can\'t create an event at the same time with: "${conflictEvent.name}" by ${conflictEvent.ownerId}.`})
+      this.setState({errorMessage: `You can't create an event at the same time with: "${conflictEvent.name}" by ${conflictEvent.ownerId}.`})
     } else {
       createNewEvent({...newEvent, roomId: params.id}).then(this.closeNewEventDialog)
       this.setState({newEvent: {...defaultNewEvent}, errorMessage: ''})
