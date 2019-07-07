@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/BookARoom/static/css/main.ce22374a.chunk.css",
-    "main.js": "/BookARoom/static/js/main.a6f283ec.chunk.js",
-    "main.js.map": "/BookARoom/static/js/main.a6f283ec.chunk.js.map",
+    "main.js": "/BookARoom/static/js/main.084c7134.chunk.js",
+    "main.js.map": "/BookARoom/static/js/main.084c7134.chunk.js.map",
     "runtime~main.js": "/BookARoom/static/js/runtime~main.ff616058.js",
     "runtime~main.js.map": "/BookARoom/static/js/runtime~main.ff616058.js.map",
-    "static/js/2.270cd232.chunk.js": "/BookARoom/static/js/2.270cd232.chunk.js",
-    "static/js/2.270cd232.chunk.js.map": "/BookARoom/static/js/2.270cd232.chunk.js.map",
+    "static/js/2.722a47e2.chunk.js": "/BookARoom/static/js/2.722a47e2.chunk.js",
+    "static/js/2.722a47e2.chunk.js.map": "/BookARoom/static/js/2.722a47e2.chunk.js.map",
     "index.html": "/BookARoom/index.html",
-    "precache-manifest.4eb79ba80f5565d9e9713e1bab6e47a8.js": "/BookARoom/precache-manifest.4eb79ba80f5565d9e9713e1bab6e47a8.js",
+    "precache-manifest.3fecf1d3dfc5277180cebf549606eb29.js": "/BookARoom/precache-manifest.3fecf1d3dfc5277180cebf549606eb29.js",
     "service-worker.js": "/BookARoom/service-worker.js",
     "static/css/main.ce22374a.chunk.css.map": "/BookARoom/static/css/main.ce22374a.chunk.css.map"
   }
