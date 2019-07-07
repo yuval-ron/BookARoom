@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b622094829b35fca62087c5536b86f62",
+    "revision": "961d30121104061d2931f396a76b2302",
     "url": "/BookARoom/index.html"
   },
   {
-    "revision": "7bf757afa9cd552f66ec",
+    "revision": "5ff8153eb812a7c9a19a",
     "url": "/BookARoom/static/css/main.ce22374a.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/BookARoom/static/js/2.722a47e2.chunk.js"
   },
   {
-    "revision": "7bf757afa9cd552f66ec",
-    "url": "/BookARoom/static/js/main.6f36a46c.chunk.js"
+    "revision": "5ff8153eb812a7c9a19a",
+    "url": "/BookARoom/static/js/main.56630f5e.chunk.js"
   },
   {
     "revision": "13995a676c0503c6fc91",
