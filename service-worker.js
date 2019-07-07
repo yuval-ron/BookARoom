@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Bookaroom/precache-manifest.10c01ed8964f5764734226e9c9148877.js"
+  "/Bookaroom/precache-manifest.6d1b3fd8e143421bc9eaff42aafc3767.js"
 );
 
 self.addEventListener('message', (event) => {
