@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {setCurrentUser} from './users/actions'
+import {setCurrentUser} from '../../users/actions'
 
-import AppBar from './commons/components/AppBar'
+import AppBar from './AppBar'
 
 class App extends Component {
   componentDidMount() {

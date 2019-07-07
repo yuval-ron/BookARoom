@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './HomePage.css';
-import MainActionButton from './commons/components/MainActionButton'
+import MainActionButton from './MainActionButton'
 
 export default class HomePage extends Component {
   createGoToCallback = (path) => {

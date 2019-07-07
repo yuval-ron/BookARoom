@@ -36,7 +36,7 @@ class Calendar extends Component {
             const isToday = moment().diff(dayMoment, 'days') === 0
             let dayEvents = []
 
-            if (weekEvents[dayName]) {
+            if (weekEvents && weekEvents[dayName]) {
               dayEvents = Object.keys(weekEvents[dayName])
                 .sort((aId, bId) => {
                   return weekEvents[dayName][aId].startTime < weekEvents[dayName][bId].startTime ? -1 : 1
